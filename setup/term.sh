@@ -3,7 +3,9 @@
 apt update -y
 apt install -y \
 	highlight \
-	vim
+	vim \
+	pdfid \
+	pdf-parser
 
 cp -v .zshrc ~/
 cp -v vimrc /etc/vim/
