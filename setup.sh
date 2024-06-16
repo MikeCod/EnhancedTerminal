@@ -21,7 +21,7 @@ dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
 cp -v .zshrc ~/
 cp -v vimrc /etc/vim/
 
-systemctl enable snapd && systemctl start snapd
+systemctl enable snapd && systemctl start snapd && systemctl enable --now snapd.apparmor
 systemctl enable bluetooth && systemctl start bluetooth
 
 
@@ -64,7 +64,7 @@ dev=$(dialog --checklist 'Development:' 40 70 70 \
 	21	'	Node.js' on 2>&1 >/dev/tty)
 aptn+="$(in_array_exec 11 'vscode' 'code' $dev)"
 aptn+="$(in_array_exec 12 'android-studio' '' $dev)"
-aptn+="$(in_array 21 'nodejs' $dev)"
+aptn+="$(in_array 21 'nodejs npm' $dev)"
 
 entr=$(dialog --checklist 'Social and entertainment:' 40 40 60 \
 	10 'Social' on \
@@ -83,5 +83,5 @@ snapn+="$(in_array 22 'vlc' $entr)"
 exec 3>&-  # Close the temporary stream
 
 
-apt update && apt install $aptn && apt upgrade
+apt update && apt install -y $aptn && apt upgrade
 snap install $snapn
