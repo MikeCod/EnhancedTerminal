@@ -49,11 +49,13 @@ misc=$(dialog --checklist 'What do you want to install ?' 40 70 70 \
 	1 'PDF tools' on \
 	2 'GIMP' on \
 	3 'qBittorrent' on \
-	4 'Proton softwares (Beta Mail & VPN)' off 2>&1 >/dev/tty)
+	4 'LibreOffice' on \
+	5 'Proton softwares (Beta Mail & VPN)' off 2>&1 >/dev/tty)
 aptn+="$(in_array 1 'pdfid pdf-parser' $misc)"
 aptn+="$(in_array 2 'gimp' $misc)"
 aptn+="$(in_array_exec 3 'qbittorrent' 'qbittorrent' $misc)"
-aptn+="$(in_array_exec 4 'proton' 'proton-vpn-gnome-desktop' $misc)"
+aptn+="$(in_array 4 'libreoffice libreoffice-gnome' $misc)"
+aptn+="$(in_array_exec 5 'proton' 'proton-vpn-gnome-desktop' $misc)"
 
 
 dev=$(dialog --checklist 'Development:' 40 70 70 \

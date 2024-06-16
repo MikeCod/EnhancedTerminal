@@ -2,6 +2,7 @@
 
 
 # Mail
+cd /tmp
 wget https://proton.me/download/mail/linux/ProtonMail-desktop-beta.deb
 sudo dpkg -i ./ProtonMail-desktop-beta.deb
 
