@@ -261,6 +261,7 @@ if [ -f /etc/zsh_command_not_found ]; then
 fi
 
 alias cah='highlight'
+alias objdump='objdump -M intel'
 
 push() {
 	git add .
@@ -271,7 +272,4 @@ push() {
 	git push
 }
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
+export PATH=$PATH:/snap/bin
