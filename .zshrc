@@ -260,11 +260,16 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
+alias pull='git pull'
 alias cah='highlight'
 alias objdump='objdump -M intel'
 
 push() {
 	git add .
+	if [[ $(git status) == *"up to date"* ]]; then
+		echo "Already up to date."
+		return 1
+	fi
 	git status
 	echo -n "Comment: "
 	read comment
