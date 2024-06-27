@@ -263,6 +263,8 @@ fi
 alias pull='git pull'
 alias cah='highlight'
 alias objdump='objdump -M intel'
+alias lc='echo $?'
+
 
 push() {
 	git add .
@@ -275,6 +277,13 @@ push() {
 	read comment
 	git commit -m "$comment"
 	git push
+}
+
+update() {
+    cd /tmp
+    git clone https://github.com/MikeCod/EnhancedTerminal.git && cd EnhancedTerminal
+    cp .zshrc ~/.zshrc
+    source ~/.zshrc
 }
 
 export PATH=$PATH:/snap/bin
