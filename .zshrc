@@ -266,7 +266,7 @@ alias objdump='objdump -M intel'
 
 push() {
 	git add .
-	if [[ $(git status) == *"up to date"* ]]; then
+	if [[ $(git status) == *"nothing to commit"* ]]; then
 		echo "Already up to date."
 		return 1
 	fi
