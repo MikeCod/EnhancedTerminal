@@ -264,7 +264,7 @@ alias pull='git pull'
 alias cah='highlight'
 alias objdump='objdump -M intel'
 alias lc='echo $?'
-
+alias dd='dd status=progress'
 
 push() {
 	git add .
@@ -276,14 +276,29 @@ push() {
 	echo -n "Comment: "
 	read comment
 	git commit -m "$comment"
-	git push
+	git push $1 $2
 }
 
 update() {
-    cd /tmp
-    git clone https://github.com/MikeCod/EnhancedTerminal.git && cd EnhancedTerminal
-    cp .zshrc ~/.zshrc
-    source ~/.zshrc
+	folder=".EnhancedTerminal"
+	cd ~
+	if [ -d "$folder" ]; then
+		cd $folder
+		git pull origin main
+		if [ $? -ne 0 ]; then
+			return
+		fi
+	else
+		git clone https://github.com/MikeCod/EnhancedTerminal.git $folder
+		if [ $? -ne 0 ]; then
+			return
+		fi
+		cd $folder
+	fi
+	cp .zshrc ~/.zshrc
+	echo "Run the command below to update your current terminal:
+		. ~/.zshrc
+	"
 }
 
 export PATH=$PATH:/snap/bin
