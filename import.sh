@@ -29,6 +29,8 @@ apt install -y \
 	bluez \
 	bluez-tools \
 	blueman \
+	gedit \
+	hexedit \
 	code \
 	nodejs npm \
 	pdfid pdf-parser \
