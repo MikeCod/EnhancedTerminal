@@ -267,6 +267,8 @@ alias lc='echo $?'
 alias dd='dd status=progress'
 alias gcl='git clone'
 alias start='npm start'
+alias npu='npm uninstall'
+alias npmu='npm uninstall'
 
 push() {
 	git add .
