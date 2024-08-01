@@ -42,7 +42,7 @@ cd $conf
 
 # Terminal
 dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
-cp -v .zshrc "$userpath"
+cp -v .zshrc "$userpath" && cp -v .zshrc /root/
 cp -v vimrc /etc/vim/
 
 # Snap package manager
