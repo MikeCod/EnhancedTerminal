@@ -55,6 +55,7 @@ unpack() {
     tar xJvf "$1.tar.xz" --directory "$2"
 }
 
+cp -v keybindings.json "$userpath/.config/Code/User/keybindings.json"
 unpack libreoffice "$userpath/.config/libreoffice/4/user"
 unpack fonts /usr/local/share/fonts
 

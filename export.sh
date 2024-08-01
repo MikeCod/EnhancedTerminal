@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -eq 0 ]; then
+	echo 'Please do NOT run as root'
+	exit 1
+fi
+
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 out="$SCRIPTPATH/conf/"
 
@@ -17,5 +22,6 @@ pack() {
         tar cJvf "$out$2.tar.xz" * && \
         cd "$out"
 }
+cp -v ~/.config/Code/User/keybindings.json .
 pack ~/.config/libreoffice/4/user libreoffice
 pack /usr/local/share/fonts fonts
