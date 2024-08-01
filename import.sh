@@ -29,7 +29,7 @@ apt install -y \
 	bluez \
 	bluez-tools \
 	blueman \
-	gedit \
+	gedit vbetool \
 	hexedit \
 	code \
 	nodejs npm \
