@@ -301,4 +301,5 @@ update() {
 	"
 }
 
-export PATH=$PATH:/snap/bin
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:/snap/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
