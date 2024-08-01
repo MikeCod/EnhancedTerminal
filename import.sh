@@ -13,7 +13,6 @@ fi
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 conf="$SCRIPTPATH/conf/"
 userpath="/home/$1"
-cd $conf
 
 if [ ! -d "$userpath" ]; then
 	echo "This user does not seem to exist."
@@ -31,10 +30,13 @@ apt install -y \
 	bluez-tools \
 	blueman \
 	code \
+	nodejs npm \
 	pdfid pdf-parser \
 	libreoffice libreoffice-gnome \
 	qbittorrent \
 	vlc
+
+cd $conf
 
 # Terminal
 dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf

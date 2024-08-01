@@ -265,6 +265,8 @@ alias cah='highlight'
 alias objdump='objdump -M intel'
 alias lc='echo $?'
 alias dd='dd status=progress'
+alias gcl='git clone'
+alias start='npm start'
 
 push() {
 	git add .
