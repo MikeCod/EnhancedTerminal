@@ -59,10 +59,17 @@ cp -v keybindings.json "$userpath/.config/Code/User/keybindings.json"
 unpack libreoffice "$userpath/.config/libreoffice/4/user"
 unpack fonts /usr/local/share/fonts
 
+# Gnome Settings
+## Volume
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['F1']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['F2']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['F3']"
 
+## Screenshot / Screenrecord
+gsettings set org.gnome.shell.keybindings screenshot "['F9']"
+gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Control>F9']"
+gsettings set org.gnome.shell.keybindings screenshot-window "['<Shift>F9']"
+gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
 
 snap install \
 	discord \

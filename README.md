@@ -8,7 +8,7 @@ This project aims to setup my actual environment as I needed to setup many times
 - [ZSH aliases](#zsh-aliases)
 - [VSCode Keyboard Shortcuts](#vscode-keyboard-shortcuts)
 - [Additional Fonts](#additional-fonts)
-
+- [Gnome Settings](#gnome-settings)
 
 ## Install
 
@@ -24,18 +24,19 @@ sudo ./import.sh
   - [x] Node.js & npm
 
 - Work software
-  - [x] PDF tools
   - [x] GIMP
   - [x] LibreOffice (with gnome extension)
 
 - Convenience Software
-  - [x] qBittorrent
   - [x] VLC
   - [x] Spotify
   - [x] WhatsDesk
   - [x] Discord
+  - [x] Bluetooth & Blueman
 
 - Utils
+  - [x] qBittorrent
+  - [x] PDF tools
   - [x] Snap package manager
   - [x] Hex editor
   - [x] Vim
@@ -101,3 +102,15 @@ sudo ./import.sh
 
 <img src="asset/vim.png" alt="vim" width="240" />
 Line numbering on
+
+### Gnome Settings
+
+| Key | Command |
+|---|---|
+| `F1` | Volume mute |
+| `F2` | Volume down |
+| `F3` | Volume up |
+| `F9` | Full screen capture |
+| `shift` + `F9` | Screen capture |
+| `ctrl` + `F9` | Window Screen capture |
+| `shift` + `ctrl` + `F9` | Screen recorder |
