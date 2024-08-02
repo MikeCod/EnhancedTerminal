@@ -29,7 +29,7 @@ This project aims to setup my actual environment as I needed to setup many times
 
 #### LibreOffice Template
 
-<img src="asset/libreoffice.png" alt="libreoffice" style="max-width: 320px" />
+<img src="asset/libreoffice.png" alt="libreoffice" width="320" />
 
 | Element | Size (pt) | Color | Left padding (cm) | Other style |
 |---|---|---|---|---|
