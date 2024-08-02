@@ -99,6 +99,5 @@ sudo ./import.sh
 
 ### Vim Settings
 
-![vim](asset/vim.png)
-
+<img src="asset/vim.png" alt="vim" width="240" />
 Line numbering on
