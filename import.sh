@@ -10,7 +10,10 @@ if [[ "$1" == "" ]]; then
 	exit 1
 fi
 
-SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+SCRIPTPATH="$(
+	cd -- "$(dirname "$0")" >/dev/null 2>&1
+	pwd -P
+)"
 conf="$SCRIPTPATH/conf/"
 userpath="/home/$1"
 
@@ -31,17 +34,18 @@ apt install -y \
 	blueman \
 	hexedit \
 	code \
-	nodejs npm \
 	pdfid pdf-parser \
 	gimp \
 	libreoffice libreoffice-gnome \
 	qbittorrent \
 	vlc
 
+runuser - "$1" -c 'cd /tmp && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && nvm install 20 && node -v && npm -v'
+
 cd $conf
 
 # Terminal
-dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
+dconf load /org/gnome/terminal/legacy/profiles:/ <gnome-terminal-profiles.dconf
 cp -v .zshrc "$userpath" && cp -v .zshrc /root/
 cp -v vimrc /etc/vim/
 
@@ -52,7 +56,7 @@ systemctl enable bluetooth && systemctl start bluetooth
 
 # App settings
 unpack() {
-    tar xJvf "$1.tar.xz" --directory "$2"
+	tar xJvf "$1.tar.xz" --directory "$2"
 }
 
 cp -v keybindings.json "$userpath/.config/Code/User/keybindings.json"
