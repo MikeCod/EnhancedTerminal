@@ -72,9 +72,12 @@ gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
 gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
 
 snap install \
+	core \
 	discord \
 	whatsdesk \
+	telegram-desktop \
 	spotify
+
 
 cp -v ./whatsdesk.desktop /opt/
 desktop-file-install /opt/whatsdesk.desktop

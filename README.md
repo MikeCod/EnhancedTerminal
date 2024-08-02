@@ -30,7 +30,8 @@ sudo ./import.sh
 - Convenience Software
   - [x] VLC
   - [x] Spotify
-  - [x] WhatsDesk
+  - [x] WhatsDesk (unofficial WhatsApp UI)
+  - [x] Telegram
   - [x] Discord
   - [x] Bluetooth & Blueman
 
