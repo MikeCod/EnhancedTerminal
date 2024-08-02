@@ -43,12 +43,12 @@ This project aims to setup my actual environment as I needed to setup many times
 
 | Profile | Rendering |
 |---|---|
-| **Dark** | ![dark](asset/profile/dark.png){: style="max-width:280px"} |
-| **Dark Sweet** | ![dark sweet](asset/profile/dark-sweet.png){: style="max-width:280px"} |
-| **Dark Transparent** | ![dark transparent](asset/profile/dark-transparent.png){: style="max-width:280px"} |
-| **Light** | ![light](asset/profile/light.png){: style="max-width:280px"} |
-| **Light Sweet** | ![light sweet](asset/profile/light-sweet.png){: style="max-width:280px"} |
-| **Light Transparent** | ![light transparent](asset/profile/light-transparent.png){: style="max-width:280px"} |
+| **Dark** | <img src="asset/profile/dark.png" alt="dark" width="280" /> |
+| **Dark Sweet** | <img src="asset/profile/dark-sweet.png" alt="dark sweet" width="280" /> |
+| **Dark Transparent** | <img src="asset/profile/dark-transparent.png" alt="dark transparent" width="280" /> |
+| **Light** | <img src="asset/profile/light.png" alt="light" width="280" /> |
+| **Light Sweet** | <img src="asset/profile/light-sweet.png" alt="light sweet" width="280" /> |
+| **Light Transparent** | <img src="asset/profile/light-transparent.png" alt="light transparent" width="280" /> |
 
 #### ZSH aliases
 
