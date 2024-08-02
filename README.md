@@ -101,7 +101,7 @@ sudo ./import.sh
 <img src="asset/vim.png" alt="vim" width="240" />
 Line numbering on
 
-### Gnome Settings
+### Gnome Keyboard Shortcuts
 
 | Key | Command |
 |---|---|
