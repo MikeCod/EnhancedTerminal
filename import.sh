@@ -29,11 +29,11 @@ apt install -y \
 	bluez \
 	bluez-tools \
 	blueman \
-	gedit vbetool \
 	hexedit \
 	code \
 	nodejs npm \
 	pdfid pdf-parser \
+	gimp \
 	libreoffice libreoffice-gnome \
 	qbittorrent \
 	vlc
