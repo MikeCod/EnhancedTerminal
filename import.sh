@@ -68,3 +68,6 @@ snap install \
 	discord \
 	whatsdesk \
 	spotify
+
+cp -v ./whatsdesk.desktop /opt/
+desktop-file-install /opt/whatsdesk.desktop

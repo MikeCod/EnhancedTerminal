@@ -25,3 +25,4 @@ pack() {
 cp -v ~/.config/Code/User/keybindings.json .
 pack ~/.config/libreoffice/4/user libreoffice
 pack /usr/local/share/fonts fonts
+cp -v /opt/whatsdesk.desktop .
