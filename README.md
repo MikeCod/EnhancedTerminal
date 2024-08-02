@@ -2,7 +2,22 @@
 
 This project aims to setup my actual environment as I needed to setup many times.
 
-### Software installed
+[My personal environment](#environment-update)
+- [LibreOffice Template](#libreoffice-template)
+- [Terminal Profiles](#terminal-profiles)
+- [ZSH aliases](#zsh-aliases)
+- [VSCode Keyboard Shortcuts](#vscode-keyboard-shortcuts)
+- [Additional Fonts](#additional-fonts)
+
+
+## Install
+
+```sh
+chmod +x import.sh
+sudo ./import.sh
+```
+
+## Software installed
 
 - Development
   - [x] VS Code
@@ -25,9 +40,9 @@ This project aims to setup my actual environment as I needed to setup many times
   - [x] Hex editor
   - [x] Vim
 
-### Environment update
+## Environment update
 
-#### LibreOffice Template
+### LibreOffice Template
 
 <img src="asset/libreoffice.png" alt="libreoffice" width="320" />
 
@@ -39,7 +54,7 @@ This project aims to setup my actual environment as I needed to setup many times
 | **Heading 3** | 16 | Dark Blue 1 | 2.0 |  |
 | **Heading 4** | 14 | Dark Gray 2 | 0.2 |  |
 
-#### Terminal Profiles
+### Terminal Profiles
 
 | Profile | Rendering |
 |---|---|
@@ -50,7 +65,7 @@ This project aims to setup my actual environment as I needed to setup many times
 | **Light Sweet** | <img src="asset/profile/light-sweet.png" alt="light sweet" width="280" /> |
 | **Light Transparent** | <img src="asset/profile/light-transparent.png" alt="light transparent" width="280" /> |
 
-#### ZSH aliases
+### ZSH aliases
 
 | Command | Alias |
 |---|---|
@@ -64,7 +79,7 @@ This project aims to setup my actual environment as I needed to setup many times
 | `ll` | `ls -l` |
 | `la` | `ls -lA` |
 
-#### VSCode Keyboard Shortcuts
+### VSCode Keyboard Shortcuts
 
 | Key | Command |
 |---|---|
@@ -73,7 +88,7 @@ This project aims to setup my actual environment as I needed to setup many times
 | `ctrl` + `K` | Open Keyboard Shortcuts |
 | `ctrl` + `N` | Rename File |
 
-#### Additional Fonts
+### Additional Fonts
 
 * Inter
 * Lato
@@ -82,15 +97,8 @@ This project aims to setup my actual environment as I needed to setup many times
 * Roboto
 * Ubuntu
 
-#### Vim Settings
+### Vim Settings
 
 ![vim](asset/vim.png)
 
 Line numbering on
-
-## Install
-
-```sh
-chmod +x import.sh
-sudo ./import.sh
-```
