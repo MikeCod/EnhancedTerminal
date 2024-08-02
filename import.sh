@@ -78,6 +78,5 @@ snap install \
 	telegram-desktop \
 	spotify
 
-
 cp -v ./whatsdesk.desktop /opt/
 desktop-file-install /opt/whatsdesk.desktop

@@ -58,14 +58,11 @@ sudo ./import.sh
 
 ### Terminal Profiles
 
-| Profile | Rendering |
-|---|---|
-| **Dark** | <img src="asset/profile/dark.png" alt="dark" width="280" /> |
-| **Dark Sweet** | <img src="asset/profile/dark-sweet.png" alt="dark sweet" width="280" /> |
-| **Dark Transparent** | <img src="asset/profile/dark-transparent.png" alt="dark transparent" width="280" /> |
-| **Light** | <img src="asset/profile/light.png" alt="light" width="280" /> |
-| **Light Sweet** | <img src="asset/profile/light-sweet.png" alt="light sweet" width="280" /> |
-| **Light Transparent** | <img src="asset/profile/light-transparent.png" alt="light transparent" width="280" /> |
+| Dark Profile | Rendering | Light Profile | Rendering |
+|---|---|---|---|
+| **Dark** | <img src="asset/profile/dark.png" alt="dark" width="280" /> | **Light** | <img src="asset/profile/light.png" alt="light" width="280" /> |
+| **Dark Sweet** | <img src="asset/profile/dark-sweet.png" alt="dark sweet" width="280" /> | **Light Sweet** | <img src="asset/profile/light-sweet.png" alt="light sweet" width="280" /> |
+| **Dark Transparent** | <img src="asset/profile/dark-transparent.png" alt="dark transparent" width="280" /> | **Light Transparent** | <img src="asset/profile/light-transparent.png" alt="light transparent" width="280" /> |
 
 ### ZSH aliases
 
