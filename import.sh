@@ -67,8 +67,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['F3']"
 
 ## Screenshot / Screenrecord
 gsettings set org.gnome.shell.keybindings screenshot "['F9']"
-gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Control>F9']"
-gsettings set org.gnome.shell.keybindings screenshot-window "['<Shift>F9']"
+gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
+gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
 gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
 
 snap install \
