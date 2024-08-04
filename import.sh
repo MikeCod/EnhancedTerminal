@@ -75,6 +75,10 @@ gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
 gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
 gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
 
+## System sounds
+gsettings set org.gnome.desktop.sound event-sounds false
+gsettings set org.gnome.desktop.sound input-feedback-sounds false
+
 snap install \
 	core \
 	discord \
