@@ -85,7 +85,7 @@ sudo ./import.sh
 | `²` | Toggle Line Comment |
 | `ctrl` + `²` | Toggle Line Comment |
 | `ctrl` + `K` | Open Keyboard Shortcuts |
-| `ctrl` + `N` | Rename File |
+| `ctrl` + `W` | Rename File |
 
 ### Additional Fonts
 
