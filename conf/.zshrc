@@ -265,7 +265,10 @@ alias cah='highlight'
 alias objdump='objdump -M intel'
 alias lc='echo $?'
 alias dd='dd status=progress'
+alias gc='git commit -m'
 alias gcl='git clone'
+alias ga='git add'
+alias gs='git status'
 alias start='npm start'
 alias npu='npm uninstall'
 alias npmu='npm uninstall'
@@ -284,8 +287,9 @@ push() {
 }
 
 update() {
-	folder=".EnhancedTerminal"
-	cd ~
+	folder="EnhancedUnix"
+    mkdir -p ~/.config
+	cd ~/.config
 	if [ -d "$folder" ]; then
 		cd $folder
 		git pull origin main
@@ -299,6 +303,7 @@ update() {
 		fi
 		cd $folder
 	fi
+    
 	cp .zshrc ~/.zshrc
 	echo "Run the command below to update your current terminal:
 		. ~/.zshrc
@@ -307,3 +312,7 @@ update() {
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:/snap/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

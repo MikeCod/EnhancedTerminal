@@ -19,10 +19,11 @@ dconf dump /org/gnome/terminal/legacy/profiles:/ > gnome-terminal-profiles.dconf
 # App settings
 pack() {
     cd "$1" && \
-        tar cJvf "$out$2.tar.xz" * && \
+        tar cJvf "$out$2.tar.xz" ${3:-.} && \
         cd "$out"
 }
-cp -v ~/.config/Code/User/keybindings.json .
+
+pack ~/.config/Code/User/ vscode "*.json"
 pack ~/.config/libreoffice/4/user libreoffice
 pack /usr/local/share/fonts fonts
 cp -v /opt/whatsdesk.desktop .
