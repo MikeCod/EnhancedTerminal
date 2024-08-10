@@ -260,18 +260,31 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
+# Node
+alias start='npm start'
+alias npu='npm uninstall'
+alias npmu='npm uninstall'
+alias ntree='tree -I "font|img" src'
+
+# Git
+alias gco='git commit -m'
+alias gch='git checkout'
+alias gcl='git clone'
+alias ga='git add'
+alias gd='git diff'
+alias gdiff='git diff'
+alias gl='git log'
+alias glog='git log'
+alias gp='git push'
+alias gstatus='git status'
+alias gsw='git switch'
+
+# Misc
 alias pull='git pull'
 alias cah='highlight'
 alias objdump='objdump -M intel'
 alias lc='echo $?'
 alias dd='dd status=progress'
-alias gc='git commit -m'
-alias gcl='git clone'
-alias ga='git add'
-alias gs='git status'
-alias start='npm start'
-alias npu='npm uninstall'
-alias npmu='npm uninstall'
 
 push() {
 	git add .
