@@ -68,15 +68,18 @@ sudo ./import.sh
 
 | Command | Alias |
 |---|---|
+| `cah` | `highlight` |
+| `la` | `ls -lA` |
+| `lc` | `echo $?` |
+| `ll` | `ls -l` |
+| `ga` | `git add` |
+| `gc` | `git commit -m` |
+| `gcl` | `git clone` |
+| `gs` | `git status` |
+| `npu` or `npmu` | `npm uninstall` |
 | `pull` | `git pull` |
 | `push` | `git add .`, `git status`, `git commit -m "<input>"`, `git push` |
-| `cah` | `highlight` |
-| `lc` | `echo $?` |
-| `gcl` | `git clone` |
 | `start` | `npm start` |
-| `npu` or `npmu` | `npm uninstall` |
-| `ll` | `ls -l` |
-| `la` | `ls -lA` |
 
 ### VSCode Keyboard Shortcuts
 
