@@ -21,7 +21,7 @@ sudo ./import.sh
 
 - Development
   - [x] VS Code
-  - [x] Node.js & npm
+  - [x] NVM, Node.js & npm
 
 - Work software
   - [x] GIMP
