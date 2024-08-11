@@ -325,7 +325,7 @@ update() {
 	"
 }
 
-help () {
+help-recovery() {
 	printf "\033[4mUsual recovery tools:\033[0m
   cryptsetup    Encrypt Drive to LUKS
   curl          Download
@@ -346,6 +346,10 @@ help () {
   /dev/random   Random byte"
 }
 help() {
+	if [[ $1 != "" ]]; then
+		search $1
+		return
+	fi
 	printf "\033[4mCommon useful tools:\033[0m
   alias         Display aliases
   curl          Download
