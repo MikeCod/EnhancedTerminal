@@ -20,27 +20,27 @@ sudo ./import.sh
 ## Software installed
 
 - Development
-  - [x] VS Code
-  - [x] NVM, Node.js & npm
+  - VS Code
+  - NVM, Node.js & npm
 
 - Work software
-  - [x] GIMP
-  - [x] LibreOffice (with gnome extension)
+  - GIMP
+  - LibreOffice (with gnome extension)
 
 - Convenience Software
-  - [x] VLC
-  - [x] Spotify
-  - [x] WhatsDesk (unofficial WhatsApp UI)
-  - [x] Telegram
-  - [x] Discord
-  - [x] Bluetooth & Blueman
+  - VLC
+  - Spotify
+  - WhatsDesk (unofficial WhatsApp UI)
+  - Telegram
+  - Discord
+  - Bluetooth & Blueman
 
 - Utils
-  - [x] qBittorrent
-  - [x] PDF tools
-  - [x] Snap package manager
-  - [x] Hex editor
-  - [x] Vim
+  - qBittorrent
+  - PDF tools
+  - Snap package manager
+  - Hex editor
+  - Vim
 
 ## Environment update
 
@@ -66,20 +66,39 @@ sudo ./import.sh
 
 ### ZSH aliases
 
-| Command | Alias |
-|---|---|
-| `cah` | `highlight` |
-| `la` | `ls -lA` |
-| `lc` | `echo $?` |
-| `ll` | `ls -l` |
-| `ga` | `git add` |
-| `gc` | `git commit -m` |
-| `gcl` | `git clone` |
-| `gs` | `git status` |
+#### Node
+| Command | Alias | Description |
+|---|---|---|
 | `npu` or `npmu` | `npm uninstall` |
-| `pull` | `git pull` |
-| `push` | `git add .`, `git status`, `git commit -m "<input>"`, `git push` |
+| `ntree` | `tree -I "font\|img\|node_modules" .` | List project files |
 | `start` | `npm start` |
+
+#### Git
+| Command | Alias | Description |
+|---|---|---|
+| `ga` | `git add` |
+| `gco` | `git commit -m` |
+| `gch` | `git checkout` |
+| `gcl` | `git clone` |
+| `gd` or `gdiff` | `git diff` |
+| `gl` or `glog` | `git log` |
+| `gstat` | `git status` |
+| `gsw` | `git switch` |
+| `pull` | `git pull` |
+| `push` | `git add .`, `git status`, `git commit -m "<input>"`, `git push` | All in one |
+
+#### Miscellaneous
+
+| Command | Alias | Description |
+|---|---|---|
+| `cah` | `highlight` | Print file content highlighted according to format |
+| `help [<text>]` | | Display a help. If an argument is given call `search <text>` |
+| `help-recovery` | | Display a help intended for recovery |
+| `la` | `ls -lA` |
+| `lb` | `ls /bin \| column` | List programs within `/bin` |
+| `lc` | `echo $?` | Last code |
+| `ll` | `ls -l` |
+| `search <text>`  | `man -k "$@" \| grep "(1)" \| cut "-d " -f1,3-` | Search a text within manual. Looking on the first page |
 
 ### VSCode Keyboard Shortcuts
 

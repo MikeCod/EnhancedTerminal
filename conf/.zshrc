@@ -264,7 +264,7 @@ fi
 alias start='npm start'
 alias npu='npm uninstall'
 alias npmu='npm uninstall'
-alias ntree='tree -I "font|img" src'
+alias ntree='tree -I "font|img|node_modules" .'
 
 # Git
 alias gco='git commit -m'
@@ -275,16 +275,18 @@ alias gd='git diff'
 alias gdiff='git diff'
 alias gl='git log'
 alias glog='git log'
+alias pull='git pull'
 alias gp='git push'
-alias gstatus='git status'
+alias gstat='git status'
 alias gsw='git switch'
 
 # Misc
-alias pull='git pull'
 alias cah='highlight'
-alias objdump='objdump -M intel'
-alias lc='echo $?'
 alias dd='dd status=progress'
+alias lb='ls /bin | column'
+alias lc='echo $?'
+alias objdump='objdump -M intel'
+alias search='sh -c '\''man -k "$@" | grep "(1)" | cut "-d " -f1,3-'\'' _'
 
 push() {
 	git add .
@@ -321,6 +323,49 @@ update() {
 	echo "Run the command below to update your current terminal:
 		. ~/.zshrc
 	"
+}
+
+help () {
+	printf "\033[4mUsual recovery tools:\033[0m
+  cryptsetup    Encrypt Drive to LUKS
+  curl          Download
+  dd            Copy source to destination
+  fdisk         Drives details
+  lsblk         Drive listing
+  man           READ THE FUCKING MANUAL
+  mkfs          Format partition
+  search <text> Search in manual (first page)
+  help [<text>] Show this help,
+                Or search in manual (first page) if an argument is given
+
+  mount <source> <mountpoint> Mount partition
+  umount <mountpoint>         Unmount partition
+
+\033[4mUsual files:\033[0m
+  /dev/zero     Null byte
+  /dev/random   Random byte"
+}
+help() {
+	printf "\033[4mCommon useful tools:\033[0m
+  alias         Display aliases
+  curl          Download
+  dd            Copy source to destination
+  fdisk         Drives details
+  lb            Command listing (alias)
+  lsblk         Drive listing
+  jq            JSON format and filter
+  man           READ THE FUCKING MANUAL
+  mkfs          Format partition
+  search <text> Search in manual (first page)
+  help [<text>] Show this help,
+                Or search in manual (first page) if an argument is given
+
+  mount <source> <mountpoint> Mount partition
+  umount <mountpoint>         Unmount partition
+
+\033[4mUsual files:\033[0m
+  /dev/zero     Null byte
+  /dev/random   Random byte"
 }
 
 export ANDROID_HOME=$HOME/Android/Sdk
