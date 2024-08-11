@@ -2,7 +2,7 @@
 
 This project aims to setup my actual environment as I needed to setup many times.
 
-[My personal environment](#environment-update)
+[Softwares](#software-installed)
 - [LibreOffice Template](#libreoffice-template)
 - [Terminal Profiles](#terminal-profiles)
 - [ZSH aliases](#zsh-aliases)
