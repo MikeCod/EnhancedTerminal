@@ -265,6 +265,8 @@ alias start='npm start'
 alias npu='npm uninstall'
 alias npmu='npm uninstall'
 alias ntree='tree -I "font|img|node_modules" .'
+alias nclean='find . -type d -name "node_modules" -exec rm {} +'
+alias nalias='alias | egrep "npm|node" | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Git
 alias gco='git commit -m'
@@ -279,14 +281,16 @@ alias pull='git pull'
 alias gp='git push'
 alias gstat='git status'
 alias gsw='git switch'
+alias galias='alias | grep git | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Misc
 alias cah='highlight'
 alias dd='dd status=progress'
-alias lb='ls /bin | column'
+alias lb='lsgrep -v alias |  /bin | column'
 alias lc='echo $?'
 alias objdump='objdump -M intel'
 alias search='sh -c '\''man -k "$@" | grep "(1)" | cut "-d " -f1,3-'\'' _'
+alias aalias='alias | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 push() {
 	git add .
