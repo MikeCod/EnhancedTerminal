@@ -13,6 +13,9 @@ SCRIPTPATH="$(
 conf="$SCRIPTPATH/conf/"
 
 sudo apt update
+if [[ $? -ne 0 ]]; then
+	exit 1
+fi
 sudo apt install -y \
 	highlight \
 	vim \
@@ -22,7 +25,7 @@ sudo apt install -y \
 	bluez-tools \
 	blueman \
 	hexedit \
-	pdfid pdf-parser \
+	pdfid pdf-parser poppler-utils \
 	gimp \
 	libreoffice libreoffice-gnome \
 	qbittorrent \
@@ -45,14 +48,14 @@ sudo systemctl enable --now blueman-mechanism
 # App settings
 unpack() {
 	if [[ $3 == "true" ]]; then
-		sudo tar xJvf "$1.tar.xz" --directory "$2"
+		sudo tar xJf "$1.tar.xz" --directory "$2"
 	else
-		tar xJvf "$1.tar.xz" --directory "$2"
+		tar xJf "$1.tar.xz" --directory "$2"
 	fi
 }
 
-unpack vscode "~/.config/Code/User/"
-unpack libreoffice "~/.config/libreoffice/4/user/"
+unpack vscode ~/.config/Code/User/
+unpack libreoffice ~/.config/libreoffice/4/user/
 unpack fonts "/usr/local/share/fonts/" true
 
 # Gnome Settings

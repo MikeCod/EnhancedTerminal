@@ -13,6 +13,10 @@ SCRIPTPATH="$(
 conf="$SCRIPTPATH/conf/"
 
 sudo apt update
+
+if [[ $? -ne 0 ]]; then
+	exit 1
+fi
 sudo apt install -y \
 	highlight \
 	vim \

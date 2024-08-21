@@ -19,7 +19,7 @@ dconf dump /org/gnome/terminal/legacy/profiles:/ > gnome-terminal-profiles.dconf
 # App settings
 pack() {
     cd "$1" && \
-        tar cJvf "$out$2.tar.xz" ${3:-.} && \
+        tar cJf "$out$2.tar.xz" ${3:-.} && \
         cd "$out"
 }
 
