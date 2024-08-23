@@ -72,9 +72,11 @@ sudo ./import.sh
 #### Node
 | Command | Alias | Description |
 |---|---|---|
+| `nclean` | `find . -type d -name "node_modules" -exec rm {} +` | Remove all `node_modules` folders |
 | `npu` or `npmu` | `npm uninstall` |
 | `ntree` | `tree -I "font\|img\|node_modules" .` | List project files |
 | `start` | `npm start` |
+| `startdev` | `NODE_ENV=development npm start` |
 
 #### Git
 | Command | Alias | Description |
@@ -84,7 +86,8 @@ sudo ./import.sh
 | `gch` | `git checkout` |
 | `gcl` | `git clone` |
 | `gd` or `gdiff` | `git diff` |
-| `gl` or `glog` | `git log` |
+| `glog` | `git log` |
+| `gp` | `git push` |
 | `gstat` | `git status` |
 | `gsw` | `git switch` |
 | `pull` | `git pull` |
@@ -101,6 +104,7 @@ sudo ./import.sh
 | `lb` | `ls /bin \| column` | List programs within `/bin` |
 | `lc` | `echo $?` | Last code |
 | `ll` | `ls -l` |
+| `lookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e` |
 | `search <text>`  | `man -k "$@" \| grep "(1)" \| cut "-d " -f1,3-` | Search a text within manual. Looking on the first page |
 
 ### VSCode Keyboard Shortcuts
@@ -111,6 +115,7 @@ sudo ./import.sh
 | `ctrl` + `²` | Toggle Line Comment |
 | `ctrl` + `K` | Open Keyboard Shortcuts |
 | `ctrl` + `W` | Rename File |
+| `ctrl` + `Q` | Do NOT close VSCode |
 
 ### Additional Fonts
 
@@ -120,11 +125,6 @@ sudo ./import.sh
 * Poppins
 * Roboto
 * Ubuntu
-
-### Vim Settings
-
-<img src="asset/vim.png" alt="vim" width="240" />
-Line numbering on
 
 ### Gnome Keyboard Shortcuts
 
