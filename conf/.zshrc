@@ -291,6 +291,7 @@ alias lc='echo $?'
 alias objdump='objdump -M intel'
 alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e'
 alias search='sh -c '\''man -k "$@" | grep "(1)" | cut "-d " -f1,3-'\'' _'
+alias schown='sudo chown -R $(whoami):$(whoami) '
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
 push() {

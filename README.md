@@ -104,7 +104,8 @@ sudo ./import.sh
 | `lb` | `ls /bin \| column` | List programs within `/bin` |
 | `lc` | `echo $?` | Last code |
 | `ll` | `ls -l` |
-| `lookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e` |
+| `lookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e` | Search a text within all files including subfolders of the current directory |
+| `schown <folder>`  | `sudo chown -R $(whoami):$(whoami) ` | Change ownership to current user |
 | `search <text>`  | `man -k "$@" \| grep "(1)" \| cut "-d " -f1,3-` | Search a text within manual. Looking on the first page |
 
 ### VSCode Keyboard Shortcuts
