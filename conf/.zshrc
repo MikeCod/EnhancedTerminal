@@ -366,7 +366,9 @@ help() {
   jq            JSON format and filter
   man           READ THE FUCKING MANUAL
   mkfs          Format partition
+  pdfunite      Merge multiple PDF
   search <text> Search in manual (first page)
+  tesseract-ocr Extract text from image.
   help [<text>] Show this help,
                 Or search in manual (first page) if an argument is given
 

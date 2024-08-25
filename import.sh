@@ -26,6 +26,7 @@ sudo apt install -y \
 	blueman \
 	hexedit \
 	pdfid pdf-parser poppler-utils \
+	tesseract-ocr \
 	gimp \
 	libreoffice libreoffice-gnome \
 	qbittorrent \
