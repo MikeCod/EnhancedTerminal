@@ -283,16 +283,25 @@ alias gstat='git status'
 alias gsw='git switch'
 alias galias='alias | grep git | sed -E "s/='\''(.+)'\''/\t\1/"'
 
+# Docker
+alias dc='docker compose'
+alias dcdefault='docker compose -f compose.yml up'
+alias dcdev='docker compose -f development.compose.yml up'
+alias dctest='docker compose -f test.compose.yml up'
+
 # Misc
 alias cah='highlight'
 alias dd='dd status=progress'
+alias le='ls -a | grep .env | column'
 alias lb='lsgrep -v alias |  /bin | column'
 alias lc='echo $?'
 alias objdump='objdump -M intel'
 alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e'
 alias search='sh -c '\''man -k "$@" | grep "(1)" | cut "-d " -f1,3-'\'' _'
 alias schown='sudo chown -R $(whoami):root '
+alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | grep -Ev "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
+
 
 push() {
 	git add .
