@@ -263,6 +263,8 @@ fi
 # Node
 alias start='npm start'
 alias startdev='NODE_ENV=development npm start'
+alias npi='npm install'
+alias npmi='npm install'
 alias npu='npm uninstall'
 alias npmu='npm uninstall'
 alias ntree='tree -I "font|img|node_modules" .'
@@ -295,16 +297,32 @@ alias dctest='docker compose -f test.compose.yml up'
 # Misc
 alias cah='highlight'
 alias dd='dd status=progress'
-alias le='ls -a | grep .env | column'
-alias lb='lsgrep -v alias |  /bin | column'
+alias le='ls -A | grep .env | column'
+alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
 alias lc='echo $?'
 alias objdump='objdump -M intel'
 alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e'
-alias search='sh -c '\''man -k "$@" | grep "(1)" | cut "-d " -f1,3-'\'' _'
 alias schown='sudo chown -R $(whoami):root '
-alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | grep -Ev "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
+alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | egrep -v "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
+
+pad() {
+	awk 'BEGIN {FS=OFS="'"${2:=~}"'"} {$1 = sprintf("  \x1b[36;1m%-'"${1:=32}"'s\x1b[0m", $1)} 1'
+}
+msearch() {
+	man -k "$@" | grep "(1)" | grep -i "$1" | cut "-d " -f1,3- | sed -Erz 's/- / ~ /g' | pad 4
+}
+asearch() {
+	apt search "$@" 2> /dev/null | sed -Erz 's/\n([a-zA-Z0-9_.-]+)\/kali-rolling ([a-zA-Z0-9 +.-]+)/\1/g' | sed -Erz 's/\n  / ~ /g' | grep -i "$1" | pad 16
+}
+search() {
+	printf "\033[1;4mManual:\033[0m\n"
+	msearch $@
+
+	printf "\n\033[1;4mPackages:\033[0m\n"
+	asearch $@
+}
 
 push() {
 	git add .

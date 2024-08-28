@@ -101,8 +101,9 @@ sudo ./import.sh
 | `help [<text>]` | | Display a help. If an argument is given call `search <text>` |
 | `help-recovery` | | Display a help intended for recovery |
 | `la` | `ls -lA` |
-| `lb` | `ls /bin \| column` | List programs within `/bin` |
+| `lb` | `ls /bin /usr/bin /usr/local/bin \| sort \| uniq \| column` | List programs |
 | `lc` | `echo $?` | Last code |
+| `le` | `ls -A \| grep .env \| column` | List env files |
 | `ll` | `ls -l` |
 | `lookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e` | Search a text within all files including subfolders of the current directory |
 | `schown <folder>`  | `sudo chown -R $(whoami):$(whoami) ` | Change ownership to current user |
