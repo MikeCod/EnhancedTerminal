@@ -25,6 +25,8 @@ sudo apt install -y \
 	bluez-tools \
 	blueman \
 	hexedit \
+	csvtool \
+	csvkit \
 	pdfid pdf-parser poppler-utils \
 	tesseract-ocr \
 	gimp \

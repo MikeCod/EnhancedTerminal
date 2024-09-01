@@ -286,9 +286,11 @@ alias gsw='git switch'
 alias galias='alias | grep git | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Docker
-alias drun='docker run'
-alias dbuild='docker build'
+alias drun='docker run -t'
+alias dbuild='docker build .'
+alias dbtag='docker build . -t'
 alias dps='docker ps'
+alias dcls='docker container ls'
 alias dc='docker compose'
 alias dcdefault='docker compose -f compose.yml up'
 alias dcdev='docker compose -f development.compose.yml up'
