@@ -8,8 +8,7 @@ fi
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 out="$SCRIPTPATH/conf/"
 
-rm -rf "$out"
-mkdir "$out" && cd "$out"
+mkdir -p "$out" && cd "$out"
 
 # Terminal
 cp -v ~/.zshrc .
