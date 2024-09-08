@@ -282,24 +282,25 @@ alias glog='git log'
 alias pull='git pull'
 alias gp='git push'
 alias gpdev='git push -u origin dev'
-alias gpmain='git push -u origin dev:main'
+alias gpmain='git push -u origin main'
+alias gpdevmain='git push -u origin dev:main'
 alias gstat='git status'
 alias gsw='git switch'
 alias galias='alias | grep git | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Docker
-alias drun='docker run -t'
 alias dbuild='docker build .'
 alias dbtag='docker build . -t'
-alias dps='docker ps'
-alias dpss='docker ps --size'
-alias dls='docker ps'
-alias dlss='docker ps --size'
 alias dcls='docker container ls'
 alias dc='docker compose'
 alias dcdefault='docker compose -f compose.yml up'
 alias dcdev='docker compose -f development.compose.yml up'
 alias dctest='docker compose -f test.compose.yml up'
+alias dls='docker ps'
+alias dlss='docker ps --size'
+alias dps='docker ps'
+alias dpss='docker ps --size'
+alias drun='docker run -t'
 
 # Misc
 alias cah='highlight'
@@ -309,7 +310,7 @@ alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
 alias lc='echo $?'
 alias objdump='objdump -M intel'
 alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e'
-alias schown='sudo chown -R $(whoami):root '
+alias schown='sudo chown -R $(whoami):$(whoami) '
 alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | egrep -v "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
@@ -329,7 +330,7 @@ iagrep() {
 	eval $__geval
 }
 
-# Search within manuals
+# Search within manual
 msearch() {
 	man -k "$@" | grep "(1)" | iagrep "$@" | cut "-d " -f1,3- | sed -Erz 's/- / ~ /g' | pad 4
 }
@@ -339,7 +340,7 @@ asearch() {
 	apt search "$@" 2> /dev/null | sed -Erz 's/\n([a-zA-Z0-9_.-]+)\/kali-rolling ([a-zA-Z0-9 +.-]+)/\1/g' | sed -Erz 's/\n  / ~ /g' | iagrep "$@" | pad 16
 }
 
-# Search within manuals and packages
+# Search within manual and packages
 search() {
 	printf "\033[1;4mManual:\033[0m\n"
 	msearch $@
@@ -361,15 +362,21 @@ push() {
 	git push $1 $2
 }
 
-update() {
+update-zsh() {
 	folder="EnhancedUnix"
     mkdir -p ~/.config
 	cd ~/.config
 	if [ -d "$folder" ]; then
 		cd $folder
-		git pull origin main
-		if [ $? -ne 0 ]; then
+		git_pull=$(git pull origin main 2> /dev/null)
+		echo $git_pull
+		
+		if [[ $? -ne 0 || $git_pull == *"Already up to date"* ]]; then
 			return
+		elif [[ $git_pull == *"vscode"* || $git_pull == *"gnome-terminal-profiles"* || $git_pull == *"import.sh"* || $git_pull == *"fonts"* || $git_pull == *"libre-office"* ]]; then
+			./import.sh
+		else
+			./import-zsh.sh
 		fi
 	else
 		git clone https://github.com/MikeCod/EnhancedTerminal.git $folder
@@ -377,11 +384,12 @@ update() {
 			return
 		fi
 		cd $folder
+		./import.sh
 	fi
     
-	cp .zshrc ~/.zshrc
+
 	echo "Run the command below to update your current terminal:
-		. ~/.zshrc
+	. ~/.zshrc
 	"
 }
 
