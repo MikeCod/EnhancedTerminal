@@ -317,12 +317,29 @@ alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 pad() {
 	awk 'BEGIN {FS=OFS="'"${2:=~}"'"} {$1 = sprintf("  \x1b[36;1m%-'"${1:=32}"'s\x1b[0m", $1)} 1'
 }
+
+# Insensitive AND grep
+iagrep() {
+	local __geval="grep -i $1"
+
+	shift
+	for gcmd in $@; do
+		__geval+=" | grep -i $gcmd"
+	done
+	eval $__geval
+}
+
+# Search within manuals
 msearch() {
-	man -k "$@" | grep "(1)" | grep -i "$1" | cut "-d " -f1,3- | sed -Erz 's/- / ~ /g' | pad 4
+	man -k "$@" | grep "(1)" | iagrep "$@" | cut "-d " -f1,3- | sed -Erz 's/- / ~ /g' | pad 4
 }
+
+# Search within (uninstalled) packages
 asearch() {
-	apt search "$@" 2> /dev/null | sed -Erz 's/\n([a-zA-Z0-9_.-]+)\/kali-rolling ([a-zA-Z0-9 +.-]+)/\1/g' | sed -Erz 's/\n  / ~ /g' | grep -i "$1" | pad 16
+	apt search "$@" 2> /dev/null | sed -Erz 's/\n([a-zA-Z0-9_.-]+)\/kali-rolling ([a-zA-Z0-9 +.-]+)/\1/g' | sed -Erz 's/\n  / ~ /g' | iagrep "$@" | pad 16
 }
+
+# Search within manuals and packages
 search() {
 	printf "\033[1;4mManual:\033[0m\n"
 	msearch $@
