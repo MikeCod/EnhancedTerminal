@@ -15,9 +15,24 @@ This project aims to setup my actual environment as I needed to setup many times
 
 ## Install
 
+### Complete environment
 ```sh
 chmod +x import.sh
-sudo ./import.sh
+./import.sh
+```
+
+### ZSH only
+```sh
+chmod +x import-zsh.sh
+./import-zsh.sh
+```
+*It actually update VIM and Gnome profiles too*
+
+
+## Update
+Once installed, check whenever you want an update :
+```sh
+update-zsh
 ```
 
 ## Software installed
@@ -88,29 +103,48 @@ sudo ./import.sh
 | `gd` or `gdiff` | `git diff` |
 | `glog` | `git log` |
 | `gp` | `git push` |
+| `gpdev` | `git push -u origin dev` |
+| `gpdevmain` | `git push -u origin dev:main` |
+| `gpmain` | `git push -u origin main` |
 | `gstat` | `git status` |
 | `gsw` | `git switch` |
 | `pull` | `git pull` |
 | `push` | `git add .`, `git status`, `git commit -m "<input>"`, `git push` | All in one |
 
-#### Miscellaneous
+#### Docker
+| Command | Alias | Description |
+|---|---|---|
+| `dbuild` | `docker build` |
+| `dbtag` | `docker build . -t dbtag` |
+| `dcls` | `docker container ls` |
+| `dc` | `docker compose` |
+| `dcdefault` | `docker compose -f compose.yml up` |
+| `dcdev` | `docker compose -f development.compose.yml up` |
+| `dctest` | `docker compose -f test.compose.yml up` |
+| `dps` or `dls` | `docker ps` |
+| `dpss` or `dlss` | `docker ps --size` |
+| `drun` | `docker run` |
 
+#### Miscellaneous
 | Command | Alias | Description |
 |---|---|---|
 | `cah` | `highlight` | Print file content highlighted according to format |
 | `help [<text>]` | | Display a help. If an argument is given call `search <text>` |
-| `help-recovery` | | Display a help intended for recovery |
+| `help-recovery` |  | Display a help intended for recovery |
+| `iagrep <args...>` | `grep -i $1 \| grep -i $2 ...` | Insensitive AND grep |
 | `la` | `ls -lA` |
 | `lb` | `ls /bin /usr/bin /usr/local/bin \| sort \| uniq \| column` | List programs |
 | `lc` | `echo $?` | Last code |
 | `le` | `ls -A \| grep .env \| column` | List env files |
 | `ll` | `ls -l` |
+| `logan` | `cat "${1:-.}" \| cut "-d " -f1,4,7 \| egrep -v [many exclusions...] \| sort \| uniq -w 13 \| sed -Erz "s/[standard log regex format...]/g"` | Analyze log file |
 | `lookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e` | Search a text within all files including subfolders of the current directory |
 | `schown <folder>`  | `sudo chown -R $(whoami):$(whoami) ` | Change ownership to current user |
-| `search <text>`  | `man -k "$@" \| grep "(1)" \| cut "-d " -f1,3-` | Search a text within manual. Looking on the first page |
+| `asearch <text>`  | *function* | Search a text packages |
+| `msearch <text>`  | *function* | Search a text within manual. Looking on the first page |
+| `search <text>`  | `asearch()` + `msearch()` | Search a text manual and packages |
 
 ### VSCode Keyboard Shortcuts
-
 | Key | Command |
 |---|---|
 | `²` | Toggle Line Comment |
