@@ -303,6 +303,7 @@ alias dpss='docker ps --size'
 alias drun='docker run -t'
 
 # Misc
+alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
 alias cah='highlight'
 alias dd='dd status=progress'
 alias le='ls -A | grep .env | column'
@@ -337,7 +338,7 @@ msearch() {
 
 # Search within (uninstalled) packages
 asearch() {
-	apt search "$@" 2> /dev/null | sed -Erz 's/\n([a-zA-Z0-9_.-]+)\/kali-rolling ([a-zA-Z0-9 +.-]+)/\1/g' | sed -Erz 's/\n  / ~ /g' | iagrep "$@" | pad 16
+	apt search "$@" 2> /dev/null | sed -Erz 's/\n([a-zA-Z0-9_.-]+)\/kali-rolling(([a-zA-Z0-9 ,:+.-]|\[|\])+)/\1/g' | sed -Erz 's/\n  / ~ /g' | iagrep "$@" | pad 18
 }
 
 # Search within manual and packages
