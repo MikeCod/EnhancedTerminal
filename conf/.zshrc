@@ -308,17 +308,18 @@ alias drun='docker run -t'
 alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
 alias cah='highlight'
 alias dd='dd status=progress'
-alias le='ls -A | grep .env | column'
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
 alias lc='echo $?'
-alias objdump='objdump -M intel'
+alias le='ls -A | grep .env | column'
 alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e'
+alias objdump='objdump -M intel'
+alias resize='convert -resize'
 alias schown='sudo chown -R $(whoami):$(whoami) '
 alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | egrep -v "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
 
-round-corners() {
+rimg() {
 	if [ ! -f "$1" ]; then
 		echo "No such file '$1'" >&2
 		return 1
@@ -429,7 +430,7 @@ help-recovery() {
   lsblk         Drive listing
   man           READ THE FUCKING MANUAL
   mkfs          Format partition
-  search <text> Search in manual (first page)
+  search Search in manual (first page) and packages
   help [<text>] Show this help,
                 Or search in manual (first page) if an argument is given
 
@@ -446,23 +447,27 @@ help() {
 		return 0
 	fi
 	printf "\033[4mCommon useful tools:\033[0m
-  alias         Display aliases
-  curl          Download
-  dd            Copy source to destination
-  fdisk         Drives details
-  lb            Command listing (alias)
-  lsblk         Drive listing
-  jq            JSON format and filter
-  man           READ THE FUCKING MANUAL
-  mkfs          Format partition
-  pdfunite      Merge multiple PDF
-  search <text> Search in manual (first page)
-  tesseract-ocr Extract text from image.
-  help [<text>] Show this help,
-                Or search in manual (first page) if an argument is given
+  alias             Display aliases
+  asearch           Search in packages
+  curl              Download
+  dd                Copy source to destination
+  fdisk             Drives details
+  lb                Command listing (alias)
+  le                Env files listing (alias)
+  lookup            Search a text within files of the current folder
+                    and all sub-folders
+  lsblk             Drive listing
+  jq                JSON format and filter
+  man               READ THE FUCKING MANUAL
+  mkfs              Format partition
+  msearch           Search in manual (first page)
+  pdfunite          Merge multiple PDF
+  rimg              Round an image
+  search            Search in manual and packages
+  tesseract-ocr     Extract text from image.
 
-  mount <source> <mountpoint> Mount partition
-  umount <mountpoint>         Unmount partition
+  help              Show this help,
+                    Or search in manual (first page) if an argument is given
 
 \033[4mUsual files:\033[0m
   /dev/zero     Null byte
