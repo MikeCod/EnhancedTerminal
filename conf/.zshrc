@@ -284,8 +284,10 @@ alias gp='git push'
 alias gpdev='git push -u origin dev'
 alias gpmain='git push -u origin main'
 alias gpdevmain='git push -u origin dev:main'
+alias grm='git rm --cached'
 alias gstat='git status'
 alias gsw='git switch'
+alias gup='git update-index --no-assume-unchanged'
 alias galias='alias | grep git | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Docker
@@ -314,6 +316,30 @@ alias schown='sudo chown -R $(whoami):$(whoami) '
 alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | egrep -v "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
+
+round-corners() {
+	if [ ! -f "$1" ]; then
+		echo "No such file '$1'" >&2
+		return 1
+	fi
+	local width=$(identify -format '%w' "$1")
+	local height=$(identify -format '%h' "$1")
+	local filename=$(echo "${1%.*}")
+	local ext=$(echo "${$(basename -- "$1")##*.}")
+	local round_px=0
+	local round_ratio=${2:-10}
+	if (( width > height )); then
+		round_px=$(( height / round_ratio ))
+	else
+		round_px=$(( width / round_ratio ))
+	fi
+
+	maskname=".mask.png"
+
+	convert -size "${width}x${height}" xc:none -draw "roundrectangle 0,0,${width},${height},${round_px},${round_px}" "$maskname"
+	convert "$1" -matte "$maskname" -compose DstIn -composite "$filename-rounded.$ext"
+	rm "$maskname"
+}
 
 pad() {
 	awk 'BEGIN {FS=OFS="'"${2:=~}"'"} {$1 = sprintf("  \x1b[36;1m%-'"${1:=32}"'s\x1b[0m", $1)} 1'
@@ -353,7 +379,7 @@ push() {
 	git add .
 	if [[ $(git status) == *"nothing to commit"* ]]; then
 		echo "Already up to date."
-		return 1
+		return 0
 	fi
 	git status
 	echo -n "Comment: "
@@ -372,7 +398,7 @@ update-zsh() {
 		echo $git_pull
 		
 		if [[ $? -ne 0 || $git_pull == *"Already up to date"* ]]; then
-			return
+			return 0
 		elif [[ $git_pull == *"vscode"* || $git_pull == *"gnome-terminal-profiles"* || $git_pull == *"import.sh"* || $git_pull == *"fonts"* || $git_pull == *"libre-office"* ]]; then
 			./import.sh
 		else
@@ -381,7 +407,7 @@ update-zsh() {
 	else
 		git clone https://github.com/MikeCod/EnhancedTerminal.git $folder
 		if [ $? -ne 0 ]; then
-			return
+			return 0
 		fi
 		cd $folder
 		./import.sh
@@ -416,7 +442,7 @@ help-recovery() {
 help() {
 	if [[ $1 != "" ]]; then
 		search $1
-		return
+		return 0
 	fi
 	printf "\033[4mCommon useful tools:\033[0m
   alias         Display aliases
