@@ -274,6 +274,8 @@ alias nalias='alias | egrep "npm|node" | sed -E "s/='\''(.+)'\''/\t\1/"'
 # Git
 alias gco='git commit -m'
 alias gch='git checkout'
+alias gch-ours='git checkout --ours'
+alias gch-theirs='git checkout --theirs'
 alias gcl='git clone'
 alias ga='git add'
 alias gd='git diff'
