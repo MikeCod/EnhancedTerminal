@@ -268,7 +268,7 @@ alias npmi='npm install'
 alias npu='npm uninstall'
 alias npmu='npm uninstall'
 alias ntree='tree -I "font|img|node_modules" .'
-alias nclean='find . -type d -name "node_modules" -exec rm {} +'
+alias clean='find . -type d \( -name "node_modules" -o -iname "build" \) -exec rm -rf {} +'
 alias nalias='alias | egrep "npm|node" | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Git
@@ -332,13 +332,14 @@ rimg() {
 	local ext=$(echo "${$(basename -- "$1")##*.}")
 	local round_px=0
 	local round_ratio=${2:-10}
+	
 	if (( width > height )); then
 		round_px=$(( height / round_ratio ))
 	else
 		round_px=$(( width / round_ratio ))
 	fi
 
-	maskname=".mask.png"
+	local maskname=".mask.png"
 
 	convert -size "${width}x${height}" xc:none -draw "roundrectangle 0,0,${width},${height},${round_px},${round_px}" "$maskname"
 	convert "$1" -matte "$maskname" -compose DstIn -composite "$filename-rounded.$ext"
