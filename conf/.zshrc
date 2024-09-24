@@ -308,6 +308,7 @@ alias drun='docker run -t'
 
 # Misc
 alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
+alias cps='rsync -ah --progress'
 alias cah='highlight'
 alias dd='dd status=progress'
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
