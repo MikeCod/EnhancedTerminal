@@ -268,14 +268,12 @@ alias npmi='npm install'
 alias npu='npm uninstall'
 alias npmu='npm uninstall'
 alias ntree='tree -I "font|img|node_modules" .'
-alias clean='find . -type d \( -name "node_modules" -o -iname "build" \) -exec rm -rf {} +'
+alias nclean='find . -type d -name "node_modules" -exec rm {} +'
 alias nalias='alias | egrep "npm|node" | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Git
 alias gco='git commit -m'
 alias gch='git checkout'
-alias gch-ours='git checkout --ours'
-alias gch-theirs='git checkout --theirs'
 alias gcl='git clone'
 alias ga='git add'
 alias gd='git diff'
@@ -308,7 +306,6 @@ alias drun='docker run -t'
 
 # Misc
 alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
-alias cps='rsync -ah --progress'
 alias cah='highlight'
 alias dd='dd status=progress'
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
@@ -333,14 +330,13 @@ rimg() {
 	local ext=$(echo "${$(basename -- "$1")##*.}")
 	local round_px=0
 	local round_ratio=${2:-10}
-	
 	if (( width > height )); then
 		round_px=$(( height / round_ratio ))
 	else
 		round_px=$(( width / round_ratio ))
 	fi
 
-	local maskname=".mask.png"
+	maskname=".mask.png"
 
 	convert -size "${width}x${height}" xc:none -draw "roundrectangle 0,0,${width},${height},${round_px},${round_px}" "$maskname"
 	convert "$1" -matte "$maskname" -compose DstIn -composite "$filename-rounded.$ext"
@@ -382,16 +378,17 @@ search() {
 }
 
 push() {
-	git add .
+	git add $@
 	if [[ $(git status) == *"nothing to commit"* ]]; then
 		echo "Already up to date."
 		return 0
 	fi
+	
 	git status
 	echo -n "Comment: "
 	read comment
 	git commit -m "$comment"
-	git push $1 $2
+	git push $remote $branch
 }
 
 update-zsh() {
