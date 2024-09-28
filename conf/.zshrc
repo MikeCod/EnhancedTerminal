@@ -475,6 +475,14 @@ help() {
   /dev/random   Random byte"
 }
 
+frequent-issues() {
+	echo "Double dock:"
+	echo "  sudo apt remove gnome-shell-extension-dashtodock"
+	echo "Kill switch without VPN:"
+	echo "  nmcli d"
+	echo "  nmcli d delete <device>"
+}
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:/snap/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
 
