@@ -93,7 +93,8 @@ fi
 
 configure_prompt() {
     parse_git_branch() {
-		git symbolic-ref --short HEAD 2> /dev/null | sed -E 's/^(\w+)/｢ %F{reset}\1%F{%(#.blue.green)} ｣ /'
+		local branch=$(git symbolic-ref --short HEAD 2> /dev/null)
+		echo "｢ %F{reset}${branch}%F{%(#.blue.green)} ｣ "
     }
 
     prompt_symbol=㉿
@@ -485,6 +486,7 @@ frequent-issues() {
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:/snap/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
