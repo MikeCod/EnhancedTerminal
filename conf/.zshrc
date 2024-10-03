@@ -94,7 +94,9 @@ fi
 configure_prompt() {
     parse_git_branch() {
 		local branch=$(git symbolic-ref --short HEAD 2> /dev/null)
-		echo "｢ %F{reset}${branch}%F{%(#.blue.green)} ｣ "
+		if [[ $branch != "" ]]; then
+			echo "｢ %F{reset}${branch}%F{%(#.blue.green)} ｣ "
+		fi
     }
 
     prompt_symbol=㉿
@@ -307,6 +309,7 @@ alias drun='docker run -t'
 
 # Misc
 alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
+alias curl='curl -#'
 alias cah='highlight'
 alias dd='dd status=progress'
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'

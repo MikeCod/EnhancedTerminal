@@ -10,8 +10,10 @@
 " let g:skip_defaults_vim = 1
 "
 " If you would rather _use_ default.vim's settings, but have the system or
-" user vimrc override its settings, then uncomment the line below.
+" user vimrc override its settings, then uncomment both lines below (to load
+" the settings now but prevent it from being loaded by the user's vimrc).
 " source $VIMRUNTIME/defaults.vim
+" let g:skip_defaults_vim = 1
 
 " All Debian-specific settings are defined in $VIMRUNTIME/debian.vim and
 " sourced by the call to :runtime you can find below.  If you wish to change
@@ -30,7 +32,7 @@ runtime! debian.vim
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
-syntax on
+"syntax on
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -38,11 +40,11 @@ syntax on
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
-filetype plugin indent on
+"filetype plugin indent on
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -53,8 +55,7 @@ filetype plugin indent on
 "set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden		" Hide buffers when they are abandoned
-set mouse=a		" Enable mouse usage (all modes)
-set nu
+"set mouse=a		" Enable mouse usage (all modes)
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
