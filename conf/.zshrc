@@ -476,12 +476,25 @@ help() {
   /dev/random   Random byte"
 }
 
-frequent-issues() {
-	echo "Double dock:"
-	echo "  sudo apt remove gnome-shell-extension-dashtodock"
-	echo "Kill switch without VPN:"
-	echo "  nmcli d"
-	echo "  nmcli d delete <device>"
+repair() {
+	case "$1" in
+		"dock")
+			sudo apt remove gnome-shell-extension-dashtodock
+			;;
+		"vpn")
+			# Disable kill switch
+			local device=$(nmcli d | grep vpn | cut '-d ' -f1)
+			nmcli d delete "$device"
+			if [ $? -ne 0 ]; then
+				echo "Couldn't disable kill switch" >&2
+				return 1
+			fi
+			echo "You can now install VPN back:"
+			echo "  sudo apt install proton-vpn-gnome-desktop"
+			;;
+		"")
+			;;
+	esac
 }
 
 export ANDROID_HOME=$HOME/Android/Sdk
