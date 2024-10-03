@@ -61,6 +61,7 @@ unpack vscode ~/.config/Code/User/
 unpack libreoffice ~/.config/libreoffice/4/user/
 unpack fonts "/usr/local/share/fonts/" true
 
+# TODO: Check keyboard
 # Gnome Settings
 ## Volume
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['F1']"

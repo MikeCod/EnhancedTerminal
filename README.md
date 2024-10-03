@@ -142,7 +142,7 @@ update-zsh
 | `schown <folder>`  | `sudo chown -R $(whoami):$(whoami) ` | Change ownership to current user |
 | `asearch <text>`  | *function* | Search a text packages |
 | `msearch <text>`  | *function* | Search a text within manual. Looking on the first page |
-| `search <text>`  | `asearch()` + `msearch()` | Search a text manual and packages |
+| `search <text>`  | `asearch()` + `msearch()` | Search a text within manual and packages |
 
 ### VSCode Keyboard Shortcuts
 | Key | Command |
