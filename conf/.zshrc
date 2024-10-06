@@ -478,6 +478,21 @@ help() {
   /dev/zero     Null byte
   /dev/random   Random byte"
 }
+git-convention() {
+	printf "\033[4mGit conventional types:\033[0m
+  \033[36;1mfeat\033[0m     Features         A new feature
+  \033[36;1mfix\033[0m      Bug Fixes        A bug Fix
+  \033[36;1mdocs\033[0m     Documentation    Documentation only changes
+  \033[36;1mstyle\033[0m    Styles           Changes that do not affect the meaning of the code (white-space, formatting, etc)
+  \033[36;1mrefactor\033[0m Code Refactoring A code change that neither fixes a bug nor adds a feature
+  \033[36;1mperf\033[0m     Performance Improvements A code change that improves performance
+  \033[36;1mtest\033[0m     Tests            Adding missing tests or correcting existing tests
+  \033[36;1mbuild\033[0m    Builds           Changes that affect the build system or external dependencies (example scopes: gulp, npm)
+  \033[36;1mci\033[0m       Continuous Integrations Changes to our CI configuration files and scripts (example scopes: Travis, Circle)
+  \033[36;1mchore\033[0m    Chores           Other changes that don't modify src or test files
+  \033[36;1mrevert\033[0m   Reverts          Reverts a previous commit
+"
+}
 
 repair() {
 	case "$1" in
