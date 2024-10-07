@@ -119,11 +119,11 @@ update-zsh
 | `dcls` | `docker container ls` |
 | `dc` | `docker compose` |
 | `dcdefault` | `docker compose -f compose.yml up` |
-| `dcdev` | `docker compose -f development.compose.yml up` |
-| `dctest` | `docker compose -f test.compose.yml up` |
+| `dcdev` | `docker compose -f compose.development.yml up` |
+| `dctest` | `docker compose -f compose.test.yml up` |
 | `dps` or `dls` | `docker ps` |
 | `dpss` or `dlss` | `docker ps --size` |
-| `drun` | `docker run` |
+| `drun` | `docker run -t` |
 
 #### Miscellaneous
 | Command | Alias | Description |
@@ -134,11 +134,12 @@ update-zsh
 | `iagrep <args...>` | `grep -i $1 \| grep -i $2 ...` | Insensitive AND grep |
 | `la` | `ls -lA` |
 | `lb` | `ls /bin /usr/bin /usr/local/bin \| sort \| uniq \| column` | List programs |
-| `lc` | `echo $?` | Last code |
+| `lc` | `echo $?` | Last exit code |
 | `le` | `ls -A \| grep .env \| column` | List env files |
 | `ll` | `ls -l` |
 | `logan` | `cat "${1:-.}" \| cut "-d " -f1,4,7 \| egrep -v [many exclusions...] \| sort \| uniq -w 13 \| sed -Erz "s/[standard log regex format...]/g"` | Analyze log file |
 | `lookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e` | Search a text within all files including subfolders of the current directory |
+| `ilookup` | `grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -ie` | Same as `lookup` but case insensitive |
 | `schown <folder>`  | `sudo chown -R $(whoami):$(whoami) ` | Change ownership to current user |
 | `asearch <text>`  | *function* | Search a text packages |
 | `msearch <text>`  | *function* | Search a text within manual. Looking on the first page |
@@ -149,7 +150,6 @@ update-zsh
 |---|---|
 | `²` | Toggle Line Comment |
 | `ctrl` + `²` | Toggle Line Comment |
-| `ctrl` + `K` | Open Keyboard Shortcuts |
 | `ctrl` + `W` | Rename File |
 | `ctrl` + `Q` | Do NOT close VSCode |
 
