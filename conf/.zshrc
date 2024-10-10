@@ -276,8 +276,9 @@ alias nalias='alias | egrep "npm|node" | sed -E "s/='\''(.+)'\''/\t\1/"'
 
 # Git
 alias gco='git commit -m'
-alias gcomm='sh -c '\''git commit -m "$@"'\'' _'
 alias gch='git checkout'
+alias gchours='git checkout --ours'
+alias gchtheirs='git checkout --theirs'
 alias gcl='git clone'
 alias ga='git add'
 alias gd='git diff'
@@ -316,11 +317,13 @@ alias dd='dd status=progress'
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
 alias lc='echo $?'
 alias le='ls -A | grep .env | column'
-alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -e'
-alias ilookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude=package*.json -ie'
+alias lss='sh -c '\''du -d${2:-99999} -ah $1  | sort -hr | less'\'' _'
+alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.build --exclude-dir=.next --exclude=package*.json -e'
+alias ilookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.build --exclude-dir=.next --exclude=package*.json -ie'
 alias objdump='objdump -M intel --disassembler-color=on'
 alias resize='convert -resize'
-alias schown='sudo chown -R $(whoami):$(whoami) '
+alias rsync='rsync -ah --info=progress2'
+alias schown='sudo chown -R $(whoami):$(whoami)'
 alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | egrep -v "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
@@ -385,7 +388,9 @@ search() {
 
 push() {
 	git add $@
-	if [[ $(git status) == *"nothing to commit"* ]]; then
+	if [ $? -ne 0 ]; then
+		return 1
+	elif [[ $(git status) == *"nothing to commit"* ]]; then
 		echo "Already up to date."
 		return 0
 	fi
