@@ -314,6 +314,7 @@ alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
 alias curl='curl -#'
 alias cah='highlight'
 alias dd='dd status=progress'
+alias layout='setxkbmap -print | grep keycodes | sed -E "s/.+\((.+)\).+/\1/mg"'
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
 alias lc='echo $?'
 alias le='ls -A | grep .env | column'
@@ -403,9 +404,7 @@ push() {
 }
 
 update-zsh() {
-	folder="EnhancedUnix"
-    mkdir -p ~/.config
-	cd ~/.config
+	cd "$ENHANCED_PATH"
 	if [ -d "$folder" ]; then
 		cd $folder
 		git_pull=$(git pull origin main 2> /dev/null)

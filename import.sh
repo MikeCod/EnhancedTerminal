@@ -44,6 +44,9 @@ cp -v .zshrc ~/ && sudo cp -v .zshrc /root/
 sudo cp -v vimrc /etc/vim/
 git config --global init.defaultBranch main
 
+sed -Ei '/export ENHANCED_PATH\=/d' ~/.zshrc
+echo "export ENHANCED_PATH='$SCRIPTPATH'" >> ~/.zshrc
+
 # Snap package manager
 sudo systemctl enable --now snapd && sudo systemctl enable --now snapd.apparmor
 # Bluetooth
@@ -62,7 +65,6 @@ unpack vscode ~/.config/Code/User/
 unpack libreoffice ~/.config/libreoffice/4/user/
 unpack fonts "/usr/local/share/fonts/" true
 
-
 # Gnome Settings
 ## Volume
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['F1']"
@@ -70,21 +72,23 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['F2']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['F3']"
 
 ## Screenshot / Screenrecord
-gsettings reset org.gnome.shell.keybindings show-screenshot-ui
-if [[ $(gsettings get org.gnome.shell.keybindings show-screenshot-ui) == *"Print"* ]]; then
-	gsettings set org.gnome.shell.keybindings screenshot "['F9']"
-	gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
-	gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
-	gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
+if [[ -z "$PRINT" ]]; then
+	print=$(bash -c "read -p \"Does your keyboard have the key 'Print Screen'? [y/n] \" -n 1 c; echo \$c")
+	echo
+	if [[ $print == "y" ]]; then
+		gsettings set org.gnome.shell.keybindings screenshot "['F9']"
+		gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
+		gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
+		gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
 
-elif [[ $(gsettings list-recursively | grep "'F9'") == "" ]]; then
-	gsettings set org.gnome.shell.keybindings screenshot "['F9']"
-	gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
-	gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
-	gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
-
-else
-	echo "Warning: Could not configure screenshot" >&2
+	else
+		gsettings set org.gnome.shell.keybindings screenshot "['F9']"
+		gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
+		gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
+		gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
+	fi
+	sed -Ei '/export PRINT\=/d' ~/.zshrc
+	echo "export PRINT='$print'" >> ~/.zshrc
 fi
 
 ## System sounds
