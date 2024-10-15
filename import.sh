@@ -62,7 +62,7 @@ unpack vscode ~/.config/Code/User/
 unpack libreoffice ~/.config/libreoffice/4/user/
 unpack fonts "/usr/local/share/fonts/" true
 
-# TODO: Check keyboard
+
 # Gnome Settings
 ## Volume
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['F1']"
@@ -70,10 +70,22 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['F2']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['F3']"
 
 ## Screenshot / Screenrecord
-gsettings set org.gnome.shell.keybindings screenshot "['F9']"
-gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
-gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
-gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
+gsettings reset org.gnome.shell.keybindings show-screenshot-ui
+if [[ $(gsettings get org.gnome.shell.keybindings show-screenshot-ui) == *"Print"* ]]; then
+	gsettings set org.gnome.shell.keybindings screenshot "['F9']"
+	gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
+	gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
+	gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
+
+elif [[ $(gsettings list-recursively | grep "'F9'") == "" ]]; then
+	gsettings set org.gnome.shell.keybindings screenshot "['F9']"
+	gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift>F9']"
+	gsettings set org.gnome.shell.keybindings screenshot-window "['<Control>F9']"
+	gsettings set org.gnome.shell.keybindings show-screen-recording-ui "['<Shift><Control>F9']"
+
+else
+	echo "Warning: Could not configure screenshot" >&2
+fi
 
 ## System sounds
 gsettings set org.gnome.desktop.sound event-sounds false
