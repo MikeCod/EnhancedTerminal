@@ -290,6 +290,7 @@ alias gpdev='git push -u origin dev'
 alias gpmain='git push -u origin main'
 alias gpdevmain='git push -u origin dev:main'
 alias grm='git rm --cached'
+alias gsearch='sh -c '\''git grep $1 $(git rev-list --all)'\'' _'
 alias gstat='git status'
 alias gsw='git switch'
 alias gup='git update-index --no-assume-unchanged'
@@ -310,22 +311,37 @@ alias dpss='docker ps --size'
 alias drun='docker run -t'
 
 # Misc
-alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
+## Modified default
 alias curl='curl -#'
-alias cah='highlight'
 alias dd='dd status=progress'
-alias layout='setxkbmap -print | grep keycodes | sed -E "s/.+\((.+)\).+/\1/mg"'
+alias rsync='rsync -ah --info=progress2'
+alias objdump='objdump -M intel --disassembler-color=on'
+
+## File Finding & Listing
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
 alias lc='echo $?'
 alias le='ls -A | grep .env | column'
 alias lss='sh -c '\''du -d${2:-99999} -ah $1  | sort -hr | less'\'' _'
 alias lookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.build --exclude-dir=.next --exclude=package*.json -e'
 alias ilookup='grep -rnw . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.build --exclude-dir=.next --exclude=package*.json -ie'
-alias objdump='objdump -M intel --disassembler-color=on'
+
+## File Displaying
+alias cah='highlight'
 alias resize='convert -resize'
-alias rsync='rsync -ah --info=progress2'
-alias schown='sudo chown -R $(whoami):$(whoami)'
 alias logan='sh -c '\''cat "${1:-.}" | cut "-d " -f1,4,7 | egrep -v "/socket.io|/check|/me|/sign-in|/sign-up|/.well-known|/favicon|/robots.txt|/apple-app-site-association|/$" | sort | uniq -w 13 | sed -Erz "s/ \[([0-9]+)\/([a-zA-Z]+)\/([0-9]+):([0-9]+):([0-9]+):([0-9]+)/\t\1 \2 \3 \4:\5/g"'\'' _'
+
+## File managing
+alias adbpush='sh -c '\''adb push $1 ${2:-/sdcard/Pictures/}'\'' _'
+alias schown='sudo chown -R $(whoami):$(whoami)'
+alias layout='setxkbmap -print | grep keycodes | sed -E "s/.+\((.+)\).+/\1/mg"'
+
+## Hash
+alias blake2b512sum='openssl dgst -blake2b512'
+alias blake2s256sum='openssl dgst -blake2s256'
+alias sha3-256sum='openssl dgst -sha3-256'
+alias keccak256sum='openssl dgst -keccak-256'
+alias shake256sum='openssl dgst -shake-256'
+
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
 
