@@ -29,7 +29,6 @@ sudo apt install -y \
 	csvkit \
 	pdfid pdf-parser poppler-utils \
 	tesseract-ocr \
-	gimp \
 	libreoffice libreoffice-gnome \
 	qbittorrent \
 	vlc

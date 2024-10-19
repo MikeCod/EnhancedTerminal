@@ -314,10 +314,13 @@ alias drun='docker run -t'
 
 # Misc
 ## Modified default
+alias apt='sudo apt'
 alias curl='curl -#'
 alias dd='dd status=progress'
-alias rsync='rsync -ah --info=progress2'
+alias sdd='sudo dd status=progress'
+alias dpkg='sudo dpkg'
 alias objdump='objdump -M intel --disassembler-color=on'
+alias rsync='rsync -ah --info=progress2'
 
 ## File Finding & Listing
 alias lb='ls /bin /usr/bin /usr/local/bin | sort | uniq | column'
@@ -343,6 +346,7 @@ alias blake2s256sum='openssl dgst -blake2s256'
 alias sha3-256sum='openssl dgst -sha3-256'
 alias keccak256sum='openssl dgst -keccak-256'
 alias shake256sum='openssl dgst -shake-256'
+alias ssh-fingerprints='sh -c '\''find /etc/ssh ~/.ssh/ -iname "*$1*.pub" -exec ssh-keygen -l -E ${2:-sha256} -f {} \;'\'' _'
 
 alias aalias='alias | sed -E "s/='\''(.+)'\''/ \1/"'
 
@@ -546,3 +550,4 @@ export DOCKER_HOST=unix:///run/user/1000/docker.sock
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export ENHANCED_PATH='/home/night/Documents/project/EnhancedTerminal'
