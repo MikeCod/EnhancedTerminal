@@ -1,16 +1,6 @@
 #!/bin/bash
 
-if [ "$EUID" -eq 0 ]; then
-	echo "Please do NOT run as root" >&2
-	exit 1
-fi
-
-SCRIPTPATH="$(
-	cd -- "$(dirname "$0")" >/dev/null 2>&1
-	pwd -P
-)"
-
-conf="$SCRIPTPATH/conf/"
+source dep/requirement.sh
 
 sudo apt update
 if [[ $? -ne 0 ]]; then
@@ -37,11 +27,32 @@ cd /tmp && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install
 
 cd $conf
 
-# Terminal
-dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
-cp -v .zshrc ~/ && sudo cp -v .zshrc /root/
-sudo cp -v vimrc /etc/vim/
-git config --global init.defaultBranch main
+source dep/default.sh
+
+options=$(git help -a | grep credential- | cut -d- -f2)
+git_credential=$(question "$options" "Pick an option" "Choose 'store' if you're a beginner, or if your disk is encrypted\nYou'll always have the possibility to change this running:\n\tgit config --global -e")
+git_credential=$(echo $git_credential | tail -n 1)
+echo
+
+case $git_credential in
+	"store")
+		echo "Credentials will be stored on disk"
+		git config --global credential.helper store
+		;;
+	"cache")
+		timeout=$(bash -c "read -p $'How much time (in second) do you want your credential to be kept in memory (Leave blank for default)\n\tdefault  900 (15min)\n\t0        no timeout (until session log out)\n? ' c; echo \$c")
+		if [[ $timeout == "" ]]; then
+			echo "Left blank, default is 900"
+			git config --global credential.helper cache
+		elif [[ $timeout == "0" ]]; then
+			echo "No timeout: Until session log out"
+			git config --global credential.helper "cache --no-timeout"
+		else
+			echo "Timeout set to $timeout"
+			git config --global credential.helper "cache --timeout $timeout"
+		fi
+		;;
+esac
 
 sed -Ei '/export ENHANCED_PATH\=/d' ~/.zshrc
 echo "export ENHANCED_PATH='$SCRIPTPATH'" >> ~/.zshrc
@@ -52,14 +63,6 @@ sudo systemctl enable --now snapd && sudo systemctl enable --now snapd.apparmor
 sudo systemctl enable --now blueman-mechanism
 
 # App settings
-unpack() {
-	if [[ $3 == "true" ]]; then
-		sudo tar xJf "$1.tar.xz" --directory "$2"
-	else
-		tar xJf "$1.tar.xz" --directory "$2"
-	fi
-}
-
 unpack vscode ~/.config/Code/User/
 unpack libreoffice ~/.config/libreoffice/4/user/
 unpack fonts "/usr/local/share/fonts/" true
@@ -72,7 +75,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['F3']"
 
 ## Screenshot / Screenrecord
 if [[ -z "$PRINT" ]]; then
-	print=$(bash -c "read -p \"Does your keyboard have the key 'Print Screen'? [y/n] \" -n 1 c; echo \$c")
+	print=$(question_close "Does your keyboard have the key 'Print Screen'")
 	echo
 	if [[ $print == "y" ]]; then
 		gsettings set org.gnome.shell.keybindings screenshot "['F9']"
