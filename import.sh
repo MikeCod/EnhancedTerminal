@@ -23,11 +23,19 @@ sudo apt install -y \
 	qbittorrent \
 	vlc
 
-cd /tmp && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && nvm install 20 && node -v && npm -v
+if ! [ -x "$(command -v node)" ]; then
+	cd /tmp && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	nvm install 20
+	node -v && npm -v
+fi
 
-cd $conf
+cd "$conf"
 
-source dep/default.sh
+/bin/bash "$SCRIPTPATH/setup/default.sh"
+/bin/bash "$SCRIPTPATH/setup/docker.sh"
 
 options=$(git help -a | grep credential- | cut -d- -f2)
 git_credential=$(question "$options" "Pick an option" "Choose 'store' if you're a beginner, or if your disk is encrypted\nYou'll always have the possibility to change this running:\n\tgit config --global -e")
