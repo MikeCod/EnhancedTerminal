@@ -265,7 +265,6 @@ fi
 
 # Node
 alias start='npm start'
-alias startdev='NODE_ENV=development npm start'
 alias npi='npm install'
 alias npmi='npm install'
 alias npu='npm uninstall'
